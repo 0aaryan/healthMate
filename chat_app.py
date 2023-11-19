@@ -38,7 +38,7 @@ def ai_chat():
     st.markdown("Welcome to HealthMate Chat, where you can get personalized health advice!")
     st.markdown('---')
 
-    chat = ChatOpenAI()
+    chat = ChatOpenAI(temperature=0,model="gpt-3.5-turbo-1106")
 
     # Initialize message history
     if "messages" not in st.session_state:
