@@ -18,7 +18,7 @@ You need to obtain an OpenAI API key to use the language model. Create a copy of
 To run the HealthMate Chat application, execute the following command:
 
 ```bash
-python your_script_name.py
+python chat_app.py
 ```
 
 ## Usage
