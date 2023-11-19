@@ -1,3 +1,26 @@
+<!---
+{
+  "title": "HealthMate Chat 🏥",
+  "badges": ["Python", "Streamlit", "OpenAI", "GPT-3.5 Turbo"],
+  "content": "Welcome to HealthMate Chat, a personalized health advice application powered by OpenAI's GPT-3.5 Turbo! This application allows users to interact with a virtual health advisor, providing health advice based on user input and personalized health data.",
+  "featured": {
+    "link": "https://github.com/0aaryan/healthMate",
+    "name": "Repository"
+  },
+  "image": "https://user-images.githubusercontent.com/73797587/284049847-72958a67-68d5-40f3-81e4-5090a65db1ba.png",
+  "links": [
+    {
+      "icon": "fab fa-github",
+      "url": "https://github.com/0aaryan/healthMate"
+    },
+    {
+      "icon": "fa fa-external-link-alt",
+      "url": "https://healthmate.streamlit.app/"
+    }
+  ]
+}
+--->
+
 # HealthMate Chat 🏥
 
 Welcome to HealthMate Chat, a personalized health advice application powered by OpenAI's GPT-3.5 Turbo! This application allows users to interact with a virtual health advisor, providing health advice based on user input and personalized health data.
