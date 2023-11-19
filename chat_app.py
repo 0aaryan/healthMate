@@ -46,31 +46,26 @@ def ai_chat():
             SystemMessage(content="You are the best doctor; you can answer any question asked to you. You also like to give advice and motivate people to live a healthy life and you also have a good sense of humor. you also like to use emojis in your conversation."),
         ]
 
+    user_input = st.chat_input("Your message: ", key="user_input")
+
+    if user_input:
+        # Add health data to user input
+        user_input += "\nHere are my vitals:\n"
+        vitals = st.session_state["health_data"]
+        for key in vitals:
+            user_input += f"{key}: {vitals[key]}\n"
+
+        user_input += "\nuse this data to answer my question\n"
+
+        st.session_state.messages.append(HumanMessage(content=user_input))
+        with st.spinner("Thinking..."):
+            try:
+                response = chat(st.session_state.messages)
+                st.session_state.messages.append(AIMessage(content=response.content))
+            except Exception as e:
+                st.error(f"Error generating AI response: {str(e)}")
+
     with st.sidebar:
-        st.title("📋 User Input")
-        st.write("Enter your message and select how to enter health data.")
-        st.markdown('---')
-        user_input = st.text_input("Your message: ", key="user_input")
-
-        if st.button("Send"):
-            # Add health data to user input
-            user_input += "\nHere are my vitals:\n"
-            vitals = st.session_state["health_data"]
-            for key in vitals:
-                user_input += f"{key}: {vitals[key]}\n"
-
-            user_input += "\nuse this data to answer my question\n"
-
-            st.session_state.messages.append(HumanMessage(content=user_input))
-            with st.spinner("Thinking..."):
-                try:
-                    response = chat(st.session_state.messages)
-                    st.session_state.messages.append(AIMessage(content=response.content))
-                except Exception as e:
-                    st.error(f"Error generating AI response: {str(e)}")
-
-        # Give 2 options: one to enter health data manually and one to read from Arduino
-        st.markdown('---')
         st.title("📊 Health Data Entry")
         st.write("Choose how to enter your health data.")
         health_data_method = st.selectbox("How do you want to enter your health data?", ("Enter Manually", "Read from Arduino"))
