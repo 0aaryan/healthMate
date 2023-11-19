@@ -43,7 +43,7 @@ def ai_chat():
     # Initialize message history
     if "messages" not in st.session_state:
         st.session_state.messages = [
-            SystemMessage(content="You are the best doctor; you can answer any question asked to you. You also like to give 5 advice to your patients based on their health data after answering their questions."),
+            SystemMessage(content="You are the best doctor; you can answer any question asked to you. You also like to give advice and motivate people to live a healthy life and you also have a good sense of humor. you also like to use emojis in your conversation."),
         ]
 
     with st.sidebar:
@@ -101,7 +101,7 @@ def ai_chat():
                 st.error("Field already exists")
             else:
                 st.session_state["health_data"][name] = value
-                st.experimental_rerun()
+                st.rerun()
 
         # Remove field
         st.markdown('---')
@@ -111,16 +111,24 @@ def ai_chat():
 
         if st.button("Remove"):
             del st.session_state["health_data"][name]
-            st.experimental_rerun()
+            st.rerun()
         
     chat_placeholder = st.empty()
     with chat_placeholder.container():
         messages = st.session_state.get('messages', [])
         for i, msg in enumerate(messages[1:]):
             if i % 2 == 0:
-                message(msg.content, is_user=True, key=str(i) + '_user')
+                content = msg.content.split("\nHere are my vitals:")[0]
+                message(content, is_user=True, key=str(i) + '_user')
             else:
                 message(msg.content, is_user=False, key=str(i) + '_ai')
+
+        #clear chat history
+        if st.button("Clear Chat"):
+            st.session_state.messages = [
+                SystemMessage(content="You are the best doctor; you can answer any question asked to you. You also like to give advice and motivate people to live a healthy life and you also have a good sense of humor. you also like to use emojis in your conversation."),
+            ]
+            st.rerun()
 
 def main():
     init()
