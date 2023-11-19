@@ -48,16 +48,18 @@ Clear the chat history by clicking the "Clear Chat" button. This action will res
 
 - **Screenshot 1: Initial Chat Interface**
   - Description: This screenshot shows the initial chat interface with the system message and the user's input box.
+    ![image](https://github.com/0aaryan/healthMate/assets/73797587/72958a67-68d5-40f3-81e4-5090a65db1ba)
 
-  ![Initial Chat Interface](path/to/screenshot1.png)
 
 - **Screenshot 2: Health Data Entry Sidebar**
   - Description: This screenshot illustrates the sidebar where users can enter their health data manually or choose to read it from an Arduino device.
+    ![image](https://github.com/0aaryan/healthMate/assets/73797587/d3c915b7-11d4-4e6b-91e6-a25b83063f45)
 
-  ![Health Data Entry Sidebar](path/to/screenshot2.png)
 
 - **Screenshot 3: Chat History**
   - Description: This screenshot displays the chat history with alternating user and AI messages.
+    ![image](https://github.com/0aaryan/healthMate/assets/73797587/f5a32340-d440-43b9-8d8e-0ce615681b53)
+
 
   ![Chat History](path/to/screenshot3.png)
 
