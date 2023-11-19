@@ -47,11 +47,7 @@ Clear the chat history by clicking the "Clear Chat" button. This action will res
 ## Screenshots
 **Screenshot 1: Initial Chat Interface**
     ![image](https://github.com/0aaryan/healthMate/assets/73797587/72958a67-68d5-40f3-81e4-5090a65db1ba)
-
-**Screenshot 2: Health Data Entry Sidebar**
     ![image](https://github.com/0aaryan/healthMate/assets/73797587/d3c915b7-11d4-4e6b-91e6-a25b83063f45)
-
-**Screenshot 3: Chat History**
     ![image](https://github.com/0aaryan/healthMate/assets/73797587/f5a32340-d440-43b9-8d8e-0ce615681b53)
 
 ## Acknowledgments
