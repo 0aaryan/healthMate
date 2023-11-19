@@ -12,9 +12,6 @@ from langchain.schema import (
 )
 
 def init():
-
-
-
     st.set_page_config(
         page_title="HealthMate Chat ⚕️",
         page_icon="🏥",
@@ -24,11 +21,7 @@ def init():
 
     # Test that the API key exists
     if os.getenv("OPENAI_API_KEY") is None or os.getenv("OPENAI_API_KEY") == "":
-        st.error("OPENAI_API_KEY is not set. Please set it in your environment.")
         st.stop()
-    else:
-        st.success("OPENAI_API_KEY is set")
-
 
     # Initialize session state
     if "health_data" not in st.session_state:
@@ -41,7 +34,8 @@ def on_button_click():
     pass
 
 def ai_chat():
-    st.title("HealthMate Chat 👨‍⚕️")
+    st.title("👨‍⚕️ HealthMate Chat")
+    st.markdown("Welcome to HealthMate Chat, where you can get personalized health advice!")
     st.markdown('---')
 
     chat = ChatOpenAI()
@@ -49,21 +43,23 @@ def ai_chat():
     # Initialize message history
     if "messages" not in st.session_state:
         st.session_state.messages = [
-            SystemMessage(content="You are the best doctor; you can answer any question asked to you. you also like to give advice to your patients based on their health data."),
+            SystemMessage(content="You are the best doctor; you can answer any question asked to you. You also like to give 5 advice to your patients based on their health data after answering their questions."),
         ]
 
     with st.sidebar:
+        st.title("📋 User Input")
+        st.write("Enter your message and select how to enter health data.")
+        st.markdown('---')
         user_input = st.text_input("Your message: ", key="user_input")
 
         if st.button("Send"):
-            #Add health data to user input
+            # Add health data to user input
             user_input += "\nHere are my vitals:\n"
             vitals = st.session_state["health_data"]
             for key in vitals:
                 user_input += f"{key}: {vitals[key]}\n"
 
             user_input += "\nuse this data to answer my question\n"
-
 
             st.session_state.messages.append(HumanMessage(content=user_input))
             with st.spinner("Thinking..."):
@@ -74,7 +70,11 @@ def ai_chat():
                     st.error(f"Error generating AI response: {str(e)}")
 
         # Give 2 options: one to enter health data manually and one to read from Arduino
+        st.markdown('---')
+        st.title("📊 Health Data Entry")
+        st.write("Choose how to enter your health data.")
         health_data_method = st.selectbox("How do you want to enter your health data?", ("Enter Manually", "Read from Arduino"))
+
         if health_data_method == "Enter Manually":
             # Get all the health data; use keys from dict
             for key in st.session_state["health_data"]:
@@ -86,8 +86,9 @@ def ai_chat():
             pass
 
         # Add field
-        st.markdown("---")
-        st.markdown("### Add Field")
+        st.markdown('---')
+        st.title("➕ Add Field")
+        st.write("Add a new health data field.")
         col1, col2 = st.columns(2)
         with col1:
             name = st.text_input("Name").capitalize()
@@ -103,9 +104,9 @@ def ai_chat():
                 st.experimental_rerun()
 
         # Remove field
-        st.markdown("---")
-        st.markdown("### Remove Field")
-
+        st.markdown('---')
+        st.title("➖ Remove Field")
+        st.write("Remove an existing health data field.")
         name = st.selectbox("Name", list(st.session_state["health_data"].keys()))
 
         if st.button("Remove"):
