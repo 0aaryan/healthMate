@@ -2,6 +2,8 @@ import streamlit as st
 from streamlit_chat import message
 from dotenv import load_dotenv
 import os
+from arduino_reader import ArduinoReader
+
 
 # AI imports
 from langchain.chat_models import ChatOpenAI
@@ -10,6 +12,9 @@ from langchain.schema import (
     HumanMessage,
     AIMessage
 )
+
+
+arduino_reader = ArduinoReader(port='/dev/ttyUSB0', baud_rate=9600)
 
 def init():
     st.set_page_config(
@@ -77,8 +82,22 @@ def ai_chat():
                 st.session_state["health_data"][key] = st.number_input(label=key, value=float(st.session_state["health_data"][key]))
 
         elif health_data_method == "Read from Arduino":
-            # Read from Arduino
-            pass
+            st.subheader("Arduino Data Reading")
+            duration_sec = st.number_input("Duration of data reading (seconds):", value=10)
+            if st.button("Start Reading"):
+                with st.spinner("Reading data from Arduino..."):
+                    # Read data from the Arduino for 10 seconds
+                    avg_heart_rate, avg_temperature = arduino_reader.read_data_avg(duration_sec)
+                    # Update the health data
+                    st.session_state["health_data"]["Heart Rate"] = avg_heart_rate
+                    st.session_state["health_data"]["Temperature"] = avg_temperature
+                    st.success("Data read successfully!")
+
+                # Show the data
+                st.subheader("Data Read from Arduino")
+                st.write(f"Average Heart Rate: {avg_heart_rate}")
+                st.write(f"Average Temperature: {avg_temperature}")
+                
 
         # Add field
         st.markdown('---')
