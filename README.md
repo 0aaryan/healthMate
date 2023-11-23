@@ -20,8 +20,6 @@
   ]
 }
 --->
-Certainly! A detailed README is crucial for any project to ensure that users and developers can understand, set up, and use the project effectively. Below is a template for a highly detailed README for your HealthMate project:
-
 ---
 
 # HealthMate: Smart Sensor in Healthcare
@@ -138,5 +136,3 @@ If you'd like to contribute to HealthMate, please read the [Contributing Guideli
 This project is licensed under the [MIT License](LICENSE).
 
 ---
-
-This README template provides a structured and detailed guide for setting up and using the HealthMate project. You can expand each section further based on your project's specific details and requirements.
